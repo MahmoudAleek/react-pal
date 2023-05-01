@@ -2,6 +2,21 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [ip, setIp] = useState(null);
+
+
+  useEffect(() => {
+    fetch('https://api.ipify.org/?format=json')
+      .then(response => response.json())
+      .then(
+        data => setIp(data.ip)
+      )
+      .catch(error => console.error(error));
+  }, []);
+
+  console.log("ip :",ip); 
+
+  
   return (
     <div className="App">
       <header className="App-header">
